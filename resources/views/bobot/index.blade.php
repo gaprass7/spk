@@ -1,37 +1,35 @@
 @extends('template.index')
 @section('content')
-
-<div class="col-md-12">
+<div class="col-md-4">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title"> Simple Table</h4>
+            <h4 class="card-title">Add Keterangan</h4>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class=" text-primary">
-                        <th>No</th>
-                        <th>Keterangan</th>
-                        <th>Bobot</th>
-                        <th>Aksi</th>
-                    </thead>
-                    <tbody>
-                        @php
-                            $no=1;
-                        @endphp
-                        @foreach($bobot as $row)
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $row->kriteria->kriteria }}</td>
-                            <td>{{ $row->bobot }}</td>
-                            <td>{{ $row->nilai }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            <form method="POST" action="{{ route('bobot.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="row mb-1">
+                    <div class="col-sm-12">
+                        <input type="text" placeholder="bobot"
+                            class="form-control @error('bobot') is-invalid @enderror" name="bobot"
+                            value="{{ old('bobot') }}">
+                        @error('bobot')
+                        <div class="invalid-feedback"> {{-- invalid-feedback komponen dari bootstrab --}}
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div><br>
+                <div class="text-center">
+                    <button class="btn btn-secondary"><a style="color:white;" title="Batal"
+                            href="{{ url('') }}">Batal</a></button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+@include('bobot.data')
 
 @endsection

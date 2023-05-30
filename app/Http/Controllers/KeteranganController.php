@@ -69,7 +69,8 @@ class KeteranganController extends Controller
     public function edit(string $id)
     {
         $row = Keterangan::find($id);
-        return view('Keterangan.form_edit', compact('row'));
+        $keterangan = Keterangan::all();
+        return view('Keterangan.form_edit', compact('row','keterangan'));
     }
 
     /**

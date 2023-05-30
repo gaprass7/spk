@@ -3,79 +3,95 @@
 
 <div class="col-md-4">
     <div class="card">
-        @yield('section')
-    </div>
-</div>
-<div class="col-md-8">
-    <div class="card">
         <div class="card-header">
-            <h4 class="card-title"> Simple Table</h4>
-        </div>
-        <div class="mt-8" style="width:550px; margin-left:10px;">
-            <a class="btn btn-sm" title="Tambah Nasabah Baru" style="background-color: blue; color: white;"
-                href="{{ route('dataNilai.index') }}">
-                <i class="bi bi-plus-circle-fill"> Add Nilai</i>
-            </a>
-            <a class="btn btn-danger btn-sm" title="Export to PDF Menu" href=" {{ url('menu-pdf') }}">
-                <i class="bi bi-file-earmark-pdf-fill"> Export to PDF</i>
-            </a>
-            <a class="btn btn-success btn-sm" title="Export to Excel Menu" href=" {{ url('menu-excel') }}">
-                <i class="bi bi-file-excel"> Export to Excel</i>
-            </a>
+            <h4 class="card-title"> Add Nilai Santri</h4>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class=" text-primary">
-
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>C1</th>
-                        <th>C2</th>
-                        <th>C3</th>
-                        <th>C4</th>
-                        <th>C5</th>
-                        <th>Aksi</th>
-                    </thead>
-                    <tbody>
-                        @php
-                        $no=1;
-                        @endphp
-                        @foreach($dataNilai as $row)
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $row->nama }}</td>
-                            <td>{{ $row->nilai1 }}</td>
-                            <td>{{ $row->nilai2 }}</td>
-                            <td>{{ $row->nilai3 }}</td>
-                            <td>{{ $row->nilai4 }}</td>
-                            <td>{{ $row->nilai5 }}</td>
-                            <td>
-                                <form method="POST" id="formDelete">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a class="btn btn-dark btn-sm" title="Detail Menu" href=" {{ route('dataNilai.show',$row->id) }}">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                
-                            
-                                    <a class="btn btn-warning btn-sm" title="Ubah Menu" href=" {{ route('dataNilai.edit',$row->id) }}">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                
-                                    <button type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Menu"
-                                        data-action="{{ route('dataNilai.destroy',$row->id) }}">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            <form method="POST" action="{{ route('dataNilai.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <input type="text" placeholder="Nama" class="form-control @error('nama') is-invalid @enderror"
+                            name="nama" value="{{ old('nama') }}">
+                        @error('nama')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <input type="text" placeholder="Nilai C1"
+                            class="form-control @error('nilai1') is-invalid @enderror" name="nilai1"
+                            value="{{ old('nilai1') }}">
+                        @error('nilai1')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <input type="text" placeholder="Nilai C2"
+                            class="form-control @error('nilai2') is-invalid @enderror" name="nilai2"
+                            value="{{ old('nilai2') }}">
+                        @error('nilai2')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <input type="text" placeholder="Nilai C3"
+                            class="form-control @error('nilai3') is-invalid @enderror" name="nilai3"
+                            value="{{ old('nilai3') }}">
+                        @error('nilai3')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <input type="text" placeholder="Nilai C4"
+                            class="form-control @error('nilai4') is-invalid @enderror" name="nilai4"
+                            value="{{ old('nilai4') }}">
+                        @error('nilai4')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-sm-12">
+                        <input type="text" placeholder="Nilai C5"
+                            class="form-control @error('nilai5') is-invalid @enderror" name="nilai5"
+                            value="{{ old('nilai5') }}">
+                        @error('nilai5')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <!-- Lanjutkan untuk field nilai lainnya -->
+                <!-- ... -->
+                <div class="text-center">
+                    <button class="btn btn-secondary"><a style="color:white;" title="Batal"
+                            href="{{ url('') }}">Batal</a></button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+@include('dataNilai.data')
 
 @endsection
