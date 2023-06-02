@@ -45,10 +45,10 @@
                     <p>Data Nilai</p>
                 </a>
             </li>
-            <li>
-                <a href="./tables.html">
+            <li class=" {{ Request::is('hasil')? " active":"" }} ">
+                <a href="{{ url('hasil')}}">
                     <i class="nc-icon nc-tile-56"></i>
-                    <p>Table List</p>
+                    <p>Hasil</p>
                 </a>
             </li>
             <li>

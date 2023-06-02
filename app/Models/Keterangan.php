@@ -15,4 +15,9 @@ class Keterangan extends Model
     {
         return $this->hasOne(Kriteria::class);
     }
+
+    public function hasil()
+    {
+        return $this->hasOne(Hasil::class);
+    }
 }

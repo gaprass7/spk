@@ -11,6 +11,11 @@ class Bobot extends Model
     protected $table = 'bobot';
     protected $fillable = ['bobot', 'kriteria_id'];
 
+    public function hasil()
+    {
+        return $this->hasOne(Hasil::class);
+    }
+
     public function kriteria()
     {
         return $this->belongsTo(Kriteria::class);

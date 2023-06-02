@@ -21,6 +21,11 @@ class Kriteria extends Model
         return $this->hasOne(DataNilai::class);
     }
 
+    public function hasil()
+    {
+        return $this->hasOne(Hasil::class);
+    }
+
     public function keterangan()
     {
         return $this->belongsTo(Keterangan::class);

@@ -12,6 +12,10 @@ class DataNilai extends Model
     protected $table = 'dataNilai';
     protected $fillable = ['nama', 'kriteria_id', 'nilai1', 'nilai2', 'nilai3', 'nilai4', 'nilai5'];
 
+    public function hasil()
+    {
+        return $this->hasOne(Hasil::class);
+    }
     // public function kriteria()
     // {
     //     return $this->belongsTo(Kriteria::class);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BobotController;
 use App\Http\Controllers\DataNilaiController;
+use App\Http\Controllers\HasilController;
 use App\Http\Controllers\KeteranganController;
 use App\Http\Controllers\KriteriaController;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,6 @@ Route::resource('bobot', BobotController::class);
 
 //data nilai
 Route::resource('dataNilai', DataNilaiController::class);
+
+//data Hasil
+Route::resource('hasil', HasilController::class);
