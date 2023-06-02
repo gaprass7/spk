@@ -23,7 +23,7 @@ class KriteriaController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

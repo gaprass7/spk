@@ -5,7 +5,8 @@
             <h4 class="card-title"> Simple Table</h4>
         </div>
         <div class="mt-8" style="width:550px; margin-left:10px;">
-            <a class="btn btn-sm" title="Tambah Nasabah Baru" style="background-color: blue; color: white;" href="{{ route('dataNilai.index') }}">
+            <a class="btn btn-sm" title="Tambah Nasabah Baru" style="background-color: blue; color: white;"
+                href="{{ route('dataNilai.index') }}">
                 <i class="bi bi-plus-circle-fill"> Add Nilai</i>
             </a>
             <a class="btn btn-danger btn-sm" title="Export to PDF Menu" href=" {{ url('menu-pdf') }}">
@@ -19,7 +20,6 @@
             <div class="table-responsive">
                 <table class="table">
                     <thead class=" text-primary">
-
                         <th>No</th>
                         <th>Nama</th>
                         <th>C1</th>
@@ -46,16 +46,19 @@
                                 <form method="POST" id="formDelete">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="btn btn-dark btn-sm" title="Detail Menu" href=" {{ route('dataNilai.show',$row->id) }}">
+                                    <a class="btn btn-dark btn-sm" title="Detail Menu"
+                                        href=" {{ route('dataNilai.show',$row->id) }}">
                                         <i class="fa fa-eye"></i>
                                     </a>
 
 
-                                    <a class="btn btn-warning btn-sm" title="Ubah Menu" href=" {{ route('dataNilai.edit',$row->id) }}">
+                                    <a class="btn btn-warning btn-sm" title="Ubah Menu"
+                                        href=" {{ route('dataNilai.edit',$row->id) }}">
                                         <i class="fa fa-pencil"></i>
                                     </a>
 
-                                    <button type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Menu" data-action="{{ route('dataNilai.destroy',$row->id) }}">
+                                    <button type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Menu"
+                                        data-action="{{ route('dataNilai.destroy',$row->id) }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
@@ -63,6 +66,16 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    <tfoot style="text-align:center">
+                        <tr>
+                            <td colspan="2"><strong> Nilai Tertinggi</strong></td>
+                            <td><strong>{{ $max_nilai1 }}</strong></td>
+                            <td><strong>{{ $max_nilai2 }}</strong></td>
+                            <td><strong>{{ $max_nilai3 }}</strong></td>
+                            <td><strong>{{ $max_nilai4 }}</strong></td>
+                            <td><strong>{{ $max_nilai5 }}</strong></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

@@ -17,13 +17,17 @@ $ar_kriteria = App\Models\Kriteria::all();
                         <select class="form-control" name="kriteria_id">
                             <option selected>-- Pilih Kriteria --</option>
                             @foreach($ar_kriteria as $kri)
-                            <option value="{{ $kri->id }}">{{ $kri->kriteria }}</option>
+                            @php
+                            $sel = ($kri->id == $row->kriteria_id) ? 'selected' : '' ;
+                            @endphp
+                            <option value="{{ $kri->id }}" {{$sel}}>{{ $kri->kriteria }}</option>
+                            {{-- <option value="{{ $kri->id }}">{{ $kri->kriteria }}</option> --}}
                             @endforeach
                         </select>
                     </div>
                     <div class="col-sm-12">
                         <input type="text" placeholder="bobot" class="form-control @error('bobot') is-invalid @enderror"
-                            name="bobot" value="{{ old('bobot') }}">
+                            name="bobot" value="{{ $row->bobot }}">
                         @error('bobot')
                         <div class="invalid-feedback"> {{-- invalid-feedback komponen dari bootstrab --}}
                             {{ $message }}

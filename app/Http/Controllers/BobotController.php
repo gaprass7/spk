@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bobot;
+use App\Models\Kriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BobotController extends Controller
 {
@@ -23,7 +25,9 @@ class BobotController extends Controller
      */
     public function create()
     {
-        //
+        // $ar_kriteria = Kriteria::all();
+
+        return view('bobot.index');
     }
 
     /**
@@ -31,7 +35,27 @@ class BobotController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'bobot' => 'Required|string|max:15',
+                'kriteria_id' => 'Required'
+            ],
+            [
+                'bobot.required' => 'Bobot Wajib Diisi',
+                'kriteria_id.required' => 'Kriteria Wajib Diisi',
+            ]
+        );
+        //lakukan insert data dari request form
+        DB::table('bobot')->insert(
+            [
+                'bobot' => $request->bobot,
+                'kriteria_id' => $request->kriteria_id,
+                'created_at' => now(),
+            ]
+        );
+
+        return redirect()->route('bobot.index')
+            ->with('sucsess', 'Berhasil ditambahkan');
     }
 
     /**
@@ -47,7 +71,10 @@ class BobotController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $row = Bobot::find($id);
+        $bobot = Bobot::all();
+
+        return view('bobot.form_edit', compact('row', 'bobot'));
     }
 
     /**
@@ -55,7 +82,27 @@ class BobotController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(
+            [
+                'bobot' => 'Required|string|max:15',
+                'kriteria_id' => 'Required'
+            ],
+            [
+                'bobot.required' => 'Bobot Wajib Diisi',
+                'kriteria_id.required' => 'Kriteria Wajib Diisi',
+            ]
+        );
+        //lakukan insert data dari request form
+        DB::table('bobot')->where('id', $id)->update(
+            [
+                'bobot' => $request->bobot,
+                'kriteria_id' => $request->kriteria_id,
+                'updated_at' => now(),
+            ]
+        );
+
+        return redirect()->route('bobot.index')
+        ->with('sucsess', 'Berhasil diperbaruhi');
     }
 
     /**

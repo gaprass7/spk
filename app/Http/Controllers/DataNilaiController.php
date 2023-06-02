@@ -16,7 +16,25 @@ class DataNilaiController extends Controller
         //menampilkan seluruh data 
         $dataNilai = DataNilai::all();
 
-        return view('dataNilai.index', compact('dataNilai'));
+        // Ambil nilai maksimum atau minimum untuk setiap kriteria
+        $max_nilai1 = $dataNilai->max('nilai1');
+        $max_nilai2 = $dataNilai->max('nilai2');
+        $max_nilai3 = $dataNilai->max('nilai3');
+        $max_nilai4 = $dataNilai->max('nilai4');
+        $max_nilai5 = $dataNilai->max('nilai5');
+
+        // Lakukan normalisasi menggunakan min-max normalization
+        // $dataNilai->transform(function ($item) use ($max_nilai1, $max_nilai2, $max_nilai3, $max_nilai4, $max_nilai5) {
+        //     $item->nilai1 = ($item->nilai1) / ($max_nilai1);
+        //     $item->nilai2 = ($item->nilai2) / ($max_nilai2);
+        //     $item->nilai3 = ($item->nilai3) / ($max_nilai3);
+        //     $item->nilai4 = ($item->nilai4) / ($max_nilai4);
+        //     $item->nilai5 = ($item->nilai5) / ($max_nilai5);
+
+        //     return $item;
+        // });
+
+        return view('dataNilai.index', compact('dataNilai', 'max_nilai1', 'max_nilai2', 'max_nilai3', 'max_nilai4', 'max_nilai5'));
     }
 
     /**
@@ -24,8 +42,8 @@ class DataNilaiController extends Controller
      */
     public function create()
     {
-        $dataNilai = DataNilai::all();
-        return view('dataNilai.index', compact('dataNilai'));
+        // $dataNilai = DataNilai::all();
+        return view('dataNilai.index');
     }
 
     /**
@@ -57,7 +75,7 @@ class DataNilaiController extends Controller
         );
 
         //lakukan insert data dari request form
-        DB::table('dataNilai')->insert(
+        DB::table('DataNilai')->insert(
             [
                 'nama' => $request->nama,
                 'nilai1' => $request->nilai1,
@@ -65,7 +83,7 @@ class DataNilaiController extends Controller
                 'nilai3' => $request->nilai3,
                 'nilai4' => $request->nilai4,
                 'nilai5' => $request->nilai5,
-                'created_at' => now(),
+                'created_at' => now()
             ]
         );
 
@@ -88,7 +106,7 @@ class DataNilaiController extends Controller
     {
         $dataNilai = DataNilai::all();
         $row = DataNilai::find($id);
-        return view('DataNilai.form_edit', compact('dataNilai','row'));
+        return view('DataNilai.form_edit', compact('dataNilai', 'row'));
     }
 
     /**
@@ -104,17 +122,17 @@ class DataNilaiController extends Controller
                 'nilai3' => 'Required',
                 'nilai4' => 'Required',
                 'nilai5' => 'Required',
-            // ],
-            // [
-            //     // Custom validasi (pesan error) berbahasa indonesia
-            //     'nama.required' => 'Nama Wajib Diisi',
-            //     'nama.unique' => 'Nama Sudah Ada',
-            //     'nama.max' => 'Nama Maxsimal 100 Karakter',
-            //     'nilai1.required' => 'Nilai Wajib Diisi',
-            //     'nilai2.required' => 'Nilai Wajib Diisi',
-            //     'nilai3.required' => 'Nilai Wajib Diisi',
-            //     'nilai4.required' => 'Nilai Wajib Diisi',
-            //     'nilai5.required' => 'Nilai Wajib Diisi'
+                // ],
+                // [
+                //     // Custom validasi (pesan error) berbahasa indonesia
+                //     'nama.required' => 'Nama Wajib Diisi',
+                //     'nama.unique' => 'Nama Sudah Ada',
+                //     'nama.max' => 'Nama Maxsimal 100 Karakter',
+                //     'nilai1.required' => 'Nilai Wajib Diisi',
+                //     'nilai2.required' => 'Nilai Wajib Diisi',
+                //     'nilai3.required' => 'Nilai Wajib Diisi',
+                //     'nilai4.required' => 'Nilai Wajib Diisi',
+                //     'nilai5.required' => 'Nilai Wajib Diisi'
             ]
         );
 
@@ -132,7 +150,7 @@ class DataNilaiController extends Controller
         );
 
         return redirect()->route('dataNilai.index')
-                        ->with('sucsess', 'Data Nilai Berhasil Diperbarui');
+            ->with('sucsess', 'Data Nilai Berhasil Diperbarui');
     }
 
     /**
