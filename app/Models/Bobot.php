@@ -16,7 +16,7 @@ class Bobot extends Model
         return $this->hasOne(Hasil::class);
     }
 
-    public function kriteria()
+    public function kriteria() 
     {
         return $this->belongsTo(Kriteria::class);
     }

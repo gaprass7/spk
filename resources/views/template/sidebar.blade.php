@@ -21,16 +21,16 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class=" {{ Request::is('kriteria')? " active":"" }} ">
-                <a href="{{url('kriteria')}}">
-                    <i class="nc-icon nc-diamond"></i>
-                    <p>Kriteria</p>
-                </a>
-            </li>
             <li class=" {{ Request::is('keterangan')? " active":"" }} ">
                 <a href="{{url('keterangan')}}">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>Keterangan</p>
+                </a>
+            </li>
+            <li class=" {{ Request::is('kriteria')? " active":"" }} ">
+                <a href="{{url('kriteria')}}">
+                    <i class="nc-icon nc-diamond"></i>
+                    <p>Kriteria</p>
                 </a>
             </li>
             <li class=" {{ Request::is('bobot')? " active":"" }} ">
@@ -51,16 +51,10 @@
                     <p>Hasil</p>
                 </a>
             </li>
-            <li>
-                <a href="./typography.html">
-                    <i class="nc-icon nc-caps-small"></i>
-                    <p>Typography</p>
-                </a>
-            </li>
             <li class="active-pro">
-                <a href="./upgrade.html">
+                <a href="http://gaprasss.my.id/" target="_blank">
                     <i class="nc-icon nc-spaceship"></i>
-                    <p>Upgrade to PRO</p>
+                    <p>@gaprasss.my.id</p>
                 </a>
             </li>
         </ul>

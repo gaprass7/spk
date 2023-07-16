@@ -7,7 +7,7 @@ $ar_kriteria = App\Models\Kriteria::all();
 <div class="col-md-4">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Add Keterangan</h4>
+            <h4 class="card-title">Edit Bobot</h4>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('bobot.store') }}" enctype="multipart/form-data">
@@ -38,7 +38,7 @@ $ar_kriteria = App\Models\Kriteria::all();
                 <div class="text-center">
                     <button class="btn btn-secondary"><a style="color:white;" title="Batal"
                             href="{{ url('') }}">Batal</a></button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
             </form>
         </div>

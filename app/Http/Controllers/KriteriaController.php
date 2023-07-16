@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KriteriaController extends Controller
 {
@@ -23,6 +24,7 @@ class KriteriaController extends Controller
      */
     public function create()
     {
+        return view('kriteria.index');
 
     }
 
@@ -31,7 +33,32 @@ class KriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'kode' => 'Required|string|max:3',
+                'kriteria' => 'Required|string|max:250',
+                'keterangan_id' => 'Required'
+            ],
+            [
+                'kode.required' => 'Kode Wajib Diisi',
+                'kode.max' => 'kode Maxsimal 3 karakter',
+                'kriteria.max' => 'Kriteria Wajib Diisi',
+                'kriteria.max' => 'Kriteria Maxsimal 250 karakter',
+                'keterangan_id.required' => 'Keterangan Wajib Diisi',
+            ]
+        );
+        //lakukan insert data dari request form
+        DB::table('kriteria')->insert(
+            [
+                'kode' => $request->kode,
+                'kriteria' => $request->kriteria,
+                'keterangan_id' => $request->keterangan_id,
+                'created_at' => now(),
+            ]
+        );
+
+        return redirect()->route('kriteria.index')
+                        ->with('sucsess', 'Berhasil ditambahkan');
     }
 
     /**
@@ -63,6 +90,8 @@ class KriteriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Kriteria::where('id', $id)->delete();
+        return redirect()->route('kriteria.index')
+                        ->with('sucsess', 'Data Kriteria Berhasil DiHapus');
     }
 }

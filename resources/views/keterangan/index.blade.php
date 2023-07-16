@@ -21,7 +21,7 @@
                 </div><br>
                 <div class="text-center">
                     <button class="btn btn-secondary"><a style="color:white;" title="Batal"
-                            href="{{ url('') }}">Batal</a></button>
+                            href="{{ url('keterangan') }}">Batal</a></button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

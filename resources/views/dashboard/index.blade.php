@@ -15,9 +15,8 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="card-category">Capacity</p>
-                                <p class="card-title">150GB
-                                <p>
+                                <p class="card-category">Kriteria</p>
+                                <p class="card-title">150GB</p>
                             </div>
                         </div>
                     </div>
@@ -26,9 +25,9 @@
                     <hr>
                     <div class="stats">
                         <i class="fa fa-refresh"></i>
-                        Update Now
+                        <a href="{{ url('/kriteria')}}"> View Details</a>
                     </div>
-                </div>
+                </div>~
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">

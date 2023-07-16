@@ -96,6 +96,8 @@ class KeteranganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Keterangan::where('id', $id)->delete();
+        return redirect()->route('keterangan.index')
+                        ->with('sucsess', 'Data Mitrans Berhasil DiHapus');
     }
 }

@@ -10,7 +10,7 @@ class DataNilai extends Model
     use HasFactory;
     
     protected $table = 'dataNilai';
-    protected $fillable = ['nama', 'kriteria_id', 'nilai1', 'nilai2', 'nilai3', 'nilai4', 'nilai5'];
+    protected $fillable = ['nama', 'nilai1', 'nilai2', 'nilai3', 'nilai4', 'nilai5'];
 
     public function hasil()
     {

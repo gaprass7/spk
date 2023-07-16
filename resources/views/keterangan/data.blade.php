@@ -1,7 +1,9 @@
-<div class="col-md-7">
+<div class="col-md-8">
+    @include('template.alertsukses')
+
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title"> Simple Table</h4>
+            <h4 class="card-title"> Tabel Keterangan</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -20,25 +22,18 @@
                             <td>{{ $no++ }}</td>
                             <td>{{ $row->keterangan }}</td>
                             <td>
-                                <form method="POST" id="formDelete">
+                                <form method="POST" id="formDelete" action="{{ route('keterangan.destroy',$row->id) }}">
+                                
                                     @csrf
                                     @method('DELETE')
-                                    <a class="btn btn-dark btn-sm" title="Detail Menu"
-                                        href=" {{ route('keterangan.show',$row->id) }}">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                    
 
-                                    <a class="btn btn-warning btn-sm" title="Ubah Menu"
-                                        href=" {{ route('keterangan.edit',$row->id) }}">
+                                    <a class="btn btn-warning btn-sm" title="Ubah Keterangan" href=" {{ route('keterangan.edit',$row->id) }}">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    
-                                    <button type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Menu"
-                                        data-action="{{ route('keterangan.destroy',$row->id) }}">
+                                
+                                    <button type="submit" onclick="return confirm('Anda Yakin Ingin Mengahapus ?')" class="btn btn-danger btn-sm btnDelete" title="Hapus Keterangan">
                                         <i class="fa fa-trash"></i>
                                     </button>
-
                                 </form>
                             </td>
                         </tr>

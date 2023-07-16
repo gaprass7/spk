@@ -5,6 +5,7 @@ use App\Http\Controllers\DataNilaiController;
 use App\Http\Controllers\HasilController;
 use App\Http\Controllers\KeteranganController;
 use App\Http\Controllers\KriteriaController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('dashboard');
 });
 
 Route::get('/dashboard', function () {
@@ -45,3 +46,4 @@ Route::resource('dataNilai', DataNilaiController::class);
 
 //data Hasil
 Route::resource('hasil', HasilController::class);
+Route::get('/generate-pdf', [HasilController::class, 'generatePDF']);

@@ -4,7 +4,7 @@
 <div class="col-md-4">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Edit Keterangan</h4>
+            <h4 class="card-title">Edit Nilai Santri</h4>
         </div>
         <div class="card-body">
             <form method="POST" action="{{route('dataNilai.update',$row->id)}}" enctype="multipart/form-data">

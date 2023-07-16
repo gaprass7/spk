@@ -1,18 +1,20 @@
 {{-- @yield('data') --}}
 <div class="col-md-8">
+    @include('template.alertsukses')
+
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title"> Simple Table</h4>
+            <h4 class="card-title"> Tabel Data Nilai </h4>
         </div>
         <div class="mt-8" style="width:550px; margin-left:10px;">
-            <a class="btn btn-sm" title="Tambah Nasabah Baru" style="background-color: blue; color: white;"
+            <a class="btn btn-sm" title="Tambah Data Nilai Baru" style="background-color: blue; color: white;"
                 href="{{ route('dataNilai.index') }}">
                 <i class="bi bi-plus-circle-fill"> Add Nilai</i>
             </a>
-            <a class="btn btn-danger btn-sm" title="Export to PDF Menu" href=" {{ url('menu-pdf') }}">
+            <a class="btn btn-danger btn-sm" title="Export to PDF Data Nilai" href="#">
                 <i class="bi bi-file-earmark-pdf-fill"> Export to PDF</i>
             </a>
-            <a class="btn btn-success btn-sm" title="Export to Excel Menu" href=" {{ url('menu-excel') }}">
+            <a class="btn btn-success btn-sm" title="Export to Excel Data Nilai" href="#">
                 <i class="bi bi-file-excel"> Export to Excel</i>
             </a>
         </div>
@@ -43,22 +45,21 @@
                             <td>{{ $row->nilai4 }}</td>
                             <td>{{ $row->nilai5 }}</td>
                             <td>
-                                <form method="POST" id="formDelete">
+                                <form method="POST" id="formDelete" action="{{ route('dataNilai.destroy',$row->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="btn btn-dark btn-sm" title="Detail Menu"
+                                    <a class="btn btn-dark btn-sm" title="Detail Data Nilai"
                                         href=" {{ route('dataNilai.show',$row->id) }}">
                                         <i class="fa fa-eye"></i>
                                     </a>
 
 
-                                    <a class="btn btn-warning btn-sm" title="Ubah Menu"
+                                    <a class="btn btn-warning btn-sm" title="Ubah Data Nilai"
                                         href=" {{ route('dataNilai.edit',$row->id) }}">
                                         <i class="fa fa-pencil"></i>
                                     </a>
 
-                                    <button type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Menu"
-                                        data-action="{{ route('dataNilai.destroy',$row->id) }}">
+                                    <button type="submit"  onclick="return confirm('Anda Yakin Ingin Mengahapus ?')" class="btn btn-danger btn-sm btnDelete" title="Hapus Data Nilai">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>

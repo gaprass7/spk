@@ -104,9 +104,17 @@ class DataNilaiController extends Controller
      */
     public function edit(string $id)
     {
-        $dataNilai = DataNilai::all();
         $row = DataNilai::find($id);
-        return view('DataNilai.form_edit', compact('dataNilai', 'row'));
+        $dataNilai = DataNilai::all();
+        
+        // Ambil nilai maksimum atau minimum untuk setiap kriteria
+        $max_nilai1 = $dataNilai->max('nilai1');
+        $max_nilai2 = $dataNilai->max('nilai2');
+        $max_nilai3 = $dataNilai->max('nilai3');
+        $max_nilai4 = $dataNilai->max('nilai4');
+        $max_nilai5 = $dataNilai->max('nilai5');
+
+        return view('DataNilai.form_edit', compact('dataNilai', 'row', 'max_nilai1', 'max_nilai2', 'max_nilai3', 'max_nilai4', 'max_nilai5'));
     }
 
     /**
@@ -158,6 +166,10 @@ class DataNilaiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $row = DataNilai::find($id);
+        DataNilai::where('id', $id)->delete();
+
+        return redirect()->route('dataNilai.index')
+        ->with('sucsess', 'Data Data Nilai Berhasil DiHapus');
     }
 }
